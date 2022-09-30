@@ -1,0 +1,58 @@
+<div style="width: 100%;" class="app-background-color">
+    <div class="container mt-2 app-secondary-color">
+  
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <!-- Form Start -->
+      <header class="label-text">
+        <h1 style="text-align: center;">Employee Entry Form</h1>
+      </header>
+      <div>
+        <div class="mb-3 mt-3">
+          <label for="name" class="form-label label-text">Name :</label>
+          <input type="text" class="form-control input-field bg-dark label-text" id="name"
+           placeholder="Enter Name" name="name" [(ngModel)]="empName">
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="dob" class="form-label label-text">Date of Birth :</label>
+            <input type="date" class="form-control input-field bg-dark label-text" id="dob"
+              name="dob" [(ngModel)] = "empDOB">
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="caption" class="form-label label-text">Gender : </label>
+            <select (change) = "onChangeType($event)" class="dropdown-field" [(ngModel)] = "empGender"> 
+                <option value="" disabled selected>-- select one --</option>
+                <option name ="gender" value="MALE">MALE</option>
+                <option name ="gender" value="FEMALE">FEMALE</option>
+                <option name ="gender" value="OTHERS">OTHERS</option>
+                
+            </select>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="mobile" class="form-label label-text">Mobile No. :</label>
+            <input type="text" class="form-control input-field bg-dark label-text" id="mobile"
+              name="mobile" [(ngModel)] = "empMobile">
+        </div>
+
+        <div class="mb-3 mt-3">
+          <label for="caption" class="form-label label-text">Designation : </label>
+          <select (change) = "onChangeType($event)" class="dropdown-field" [(ngModel)] = "empGender"> 
+              <option value="" disabled selected>-- select one --</option>
+              <option *ngFor="let d of desigList" value={{d.value}}>{{d.value}}</option>
+              
+          </select>
+        </div>
+
+        <button class="btn btn-primary mb-2" (click)="onSubmit()">Submit</button>
+        </div>
+      <!-- Form End -->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+

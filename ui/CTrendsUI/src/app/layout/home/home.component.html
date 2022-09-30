@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 style="text-align: center;">Create Attendence</h1>
+            <table class="table table-dark table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                    <tr *ngFor="let i of employeeList; let in = index">
+                        <td>{{i.empName}}</td>
+                        <td>{{i.empDesignation}}</td>
+                        <td>
+                            <i class="btn btn-primary" style="cursor: pointer;" (click)="btnPresentAbsent(i, ps.PRESENT)">PRESENT</i> &nbsp;
+                            <i class="btn btn-danger" style="cursor: pointer;" (click)="btnPresentAbsent(i, ps.ABSENT)">ABSENT</i>
+                        </td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
+
+        <!-- Leave Table  Start -->
+
+        <div class="col-md-6">
+            <h1 style="text-align: center;">Create Leave</h1>
+            <table class="table table-dark table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                    <tr *ngFor="let i of todayPresent; let in = index">
+                        <td>{{i.empName}}</td>
+                        <td>{{i.designation}}</td>
+                        <td>
+                            <i class="btn btn-primary" style="cursor: pointer;" (click)="btnLeave(i)">LEAVE</i>
+                        </td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
+
+    </div>
+
+</div>

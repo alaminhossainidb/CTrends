@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <label for="empId" class="form-label text-dark"><b>Select Employee</b></label>
+            <select name="empId" id="empId" (change)="onEmployeeChange()" class="dropdown-field" [(ngModel)]="empId">
+                <option *ngFor="let e of employeeList" value="{{e.empId}}">{{e.empName}}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="FromDate" class="form-label text-dark"><b>From Date</b> </label>
+            <input type="date" class="form-control input-field bg-dark label-text" [(ngModel)]="fromDate">
+        </div>
+        <div class="col-md-3">
+            <label for="toDate" class="form-label text-dark"><b>To Date</b> </label>
+            <input type="date" class="form-control input-field bg-dark label-text" [(ngModel)]="toDate">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-info" style="margin-top: 38px;" (click)="search()">Search</button>
+        </div>
+
+    </div>
+
+    <!-- History Table -->
+
+    <div *ngIf="todayPresentList" class="mt-2">
+        
+        <h1 style="text-align: center; background-color: cadetblue;">{{dynamicTitle}}</h1>
+
+        <div class="row">
+            <div class="col-md-2">
+                <h3 style="color: cadetblue;">Filter :</h3>
+            </div>
+            <div class="col-md-2">
+                <select name="type" id="type" [(ngModel)]="type" (change)="onChangeType()">
+                    <option value="ALL">ALL</option>
+                    <option value="LATE">LATE</option>
+                    <option value="IN_TIME">IN_TIME</option>
+                    <option value="EARLY_LEAVE">EARLY_LEAVE</option>
+                    <option value="PRESENT">PRESENT</option>
+                    <option value="ABSENT">ABSENT</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <b>Total <span class="fornt_size">{{total}}</span></b> &nbsp;
+                <b>Present <span class="fornt_size" style="color: green;">{{present}}</span></b> &nbsp;
+                <b>Absent <span class="fornt_size" style="color: red;">{{absent}}</span></b> &nbsp;
+                <b>In Time <span class="fornt_size" style="color: blue;">{{inTime}}</span></b> &nbsp;
+                <b>Late <span class="fornt_size" style="color: brown;">{{late}}</span></b> &nbsp;
+                <b>Early Leave <span class="fornt_size" style="color: coral;">{{earlyLeave}}</span></b>
+            </div>
+        </div>
+
+            <table class="table table-dark table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Entry Time</th>
+                        <th>Entry Status</th>
+                        <th>Leave Time</th>
+                        <th>Leave Status</th>
+                        <th>Attendence Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                    <tr *ngFor="let i of todayPresentList; let in = index">
+                        <td>{{i.empName}}</td>
+                        <td>{{i.designation}}</td>
+                        <td>{{i.entryTime}}</td>
+                        <td>
+                            <span *ngIf="i.entryStatus == 'LATE'" style="color: red;">{{i.entryStatus}}</span>  
+                            <span *ngIf="i.entryStatus != 'LATE'" >{{i.entryStatus}}</span>
+                        </td>
+                        <td>{{i.leaveTime}}</td>
+                        <td>
+                            <span *ngIf="i.leaveStatus == 'EARLY_LEAVE'" style="color: red;">{{i.leaveStatus}}</span>  
+                            <span *ngIf="i.leaveStatus != 'EARLY_LEAVE'" >{{i.leaveStatus}}</span>
+                        </td>
+                        <td>
+                            <span *ngIf="i.presentStatus == ps.PRESENT" style="color: green;">{{i.presentStatus}}</span>
+                            <span *ngIf="i.presentStatus == ps.ABSENT"  style="color: red;">{{i.presentStatus}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+    
+            </table>
+    </div>
+</div>
